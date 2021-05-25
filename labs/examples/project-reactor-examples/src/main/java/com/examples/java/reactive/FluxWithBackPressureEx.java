@@ -16,7 +16,7 @@ public class FluxWithBackPressureEx {
 		
 		// PUSH
 		// publisher
-		Flux.just("India","UK","Australia","Japan")
+		Flux.just("India","UK","Australia","Japan","Germany","Italy")
 		.log()
 		// subscriber
 		.subscribe(new Subscriber<String>() {
@@ -28,8 +28,8 @@ public class FluxWithBackPressureEx {
 			public void onSubscribe(Subscription s) {
 				System.out.println("onSubscribtion method called..");
 				this.s = s;
-				// making unbounded subscribtion 
-				s.request(Long.MAX_VALUE);
+				// making bounded subscribtion 
+				s.request(2);
 			}
 
 			@Override
