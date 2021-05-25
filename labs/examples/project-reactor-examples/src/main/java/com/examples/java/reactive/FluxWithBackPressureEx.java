@@ -20,10 +20,14 @@ public class FluxWithBackPressureEx {
 		.log()
 		// subscriber
 		.subscribe(new Subscriber<String>() {
+			
+		    private Subscription s;
+		    int onNextAmount;
 
 			@Override
 			public void onSubscribe(Subscription s) {
 				System.out.println("onSubscribtion method called..");
+				this.s = s;
 				// making unbounded subscribtion 
 				s.request(Long.MAX_VALUE);
 			}
@@ -33,6 +37,10 @@ public class FluxWithBackPressureEx {
 				System.out.println("onNext method called..");
 				countries.add(t);
 				System.out.println("Received - " + t);
+		        onNextAmount++;
+		        if (onNextAmount % 2 == 0) {
+		            s.request(2);
+		        }				
 			}
 
 			@Override
