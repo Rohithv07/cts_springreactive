@@ -1,0 +1,286 @@
+
+Functional Programming
+	- Declarative
+	- basic unit is Function
+	- immutable
+	- evaluation of functions
+	- parallel programming
+	- abstraction as 'Behaviours' and 'Data'
+	- first class functions - first class citizens - assigning functions to variable, passing functions arg, returning function
+	- higher order functions - capability to receive functions as args and return as return value
+	
+
+Lambda Expressions
+	parameter list -> expression body
+	
+	// passing two args and return value
+	(a,b) -> a + b
+	
+	(Integer a, Integer b) -> a + b
+	
+	(Integer a, Integer b) -> {return a + b;}
+	
+	// passing no arg and no return
+	() -> System.out.println("Hello Lambda");
+	 
+		
+	Predicate<Employee> empPredicate = emp -> emp.getAge() > 20 && emp.getAge() < 60 && emp.getSalary() > 0
+	empPredicate.test(new Employee());
+	
+Functional Interfaces
+	- Consumer 	=> takes single arg and no return	=> void accept(T arg) 
+	- BiConsumer
+	- Supplier	=> takes no arg and return value	=> T get()
+	- Function	=> takes single arg and return value => R apply(T arg)
+	- BiFunction									
+	- Predicate	=> takes single arg and return boolean => boolean test(T arg)
+	- BiPredicate
+	- UnaryOperator	=> takes single arg and return value of same type	=> T apply(T arg)
+	- BinaryOperator => takes two args and return value of same type    => T apply(T arg1, T arg2)
+	
+Method References
+	ArrayList::new	=> () -> new Arraylist()
+	classname::method
+	object::method	
+
+Default methods
+	stream
+	foreach
+
+Optional
+	useful for handling null checks
+	
+	Optional<Employee> getEmployee(int id) {
+	}
+	
+	Optional<Employee> empOp = getEmployee(100);
+	Employee emp = empOp.get();
+	emp.getId();
+	emp.getName()
+
+Streams
+	process collection of objects
+	
+	source -> intermediate operations -> terminal operations
+	
+	
+	
+	Source -> Arrays, Collection, I/O Channels
+	
+	Intermediate Operations -> filter, map, sort, distinct, flatmap, etc..
+	
+	Terminal Operations -> count, sum, avg, min, max, group, collect, etc..
+	
+	// 1000 emp => 50 emp from IT
+	Collection<Employee> employees;
+	
+	employees.stream()
+			 .filter(emp -> emp.getDept() == 'IT')
+			 .map(emp -> emp.getSalary())
+			 .sum()
+	
+		employees.stream()
+			 .filter(emp -> emp.getDept() == 'IT')
+			 .map(emp -> emp.getSalary())
+			 .reduce(0.0, (partialresult, sal) -> partialresult + sal)  // immutable dataset
+			 
+		employees.stream()
+			 .filter(emp -> emp.getDept() == 'IT' && emp.getSalary > 50000)
+			 .map(emp -> emp.getId())
+			 .collect(Collectors.toList())											// mutable dataset
+			 
+			50000
+			75000
+			40000
+			 
+			0.0
+			0 + 50000
+			50000 + 75000
+			125000 + 40000
+			
+	employees.parallelstream()
+			 .filter(emp -> emp.getDept() == 'IT')
+			 .map(emp -> emp.getSalary())
+			 .reduce(0.0, (partialresult, sal) -> partialresult + sal	
+			 
+	stateless vs stateful
+			
+	reduce -> identity, accumulator, combiner			=> immutable dataset
+	
+	collect -> supplier, accumulator, combiner			=> mutable dataset
+	
+	Collectors -> toList, groupingBy, averaging, counting, etc..
+
+	
+New Date/Time API
+	
+	currentDate.afterMonth(1)
+	currentDate.beforeMonth(1)
+	
+	currentDate.next(Wednesday)
+	
+	LocalDate
+	LocalTime
+	LocalDateTime
+	
+	OffsetDate
+	OffsetTime
+	OffsetDateTime	
+	
+	
+Reactive Programming
+
+Reactive System
+
+Reactive Manifesto
+	- Responsiveness
+	- Resiliency
+	- Elasticity
+	- Message Driven
+	
+Java Reactive Apps
+	- JavaRx
+	- Project Reactor
+
+Spring Reactive
+	- Spring Webflux
+	- Spring Data Reactive
+	- ....
+	
+Reactive Streams Specification
+	- Publisher
+	- Subscriber
+	- Processor
+
+Project Reactor
+	- Observables -> publisher -> generate data stream
+	- Observer	  -> subscriber -> subscribes / receives data stream
+	
+	- publishers
+		- Mono	-> generates 0 or 1 items
+		- Flux  -> generates 0 to N items
+
+Spring Core
+	- DI
+	- IoC
+	- BeanFactory vs ApplicationContext
+	- Bean Instantiation - Constructor, Static Factory Method, Instance Factory Method
+	- Bean Scopes - Singleton, Prototype, Request, Session, Application
+	- Dependency Injection - Constructor, Setters
+	- Bean Wiring - Manual / Auto Wiring
+	
+	- Configuration - XML, Annotation, Java Configuration
+	
+	public class Car {
+		Engine engine;
+		
+		Car(Engine engine) {
+			this.engine = engine;
+		}
+		
+		// getter and setter
+		
+	}
+	
+	<bean id="car" class="Car">
+		<property name="engine" ref="engine" />
+	</bean>
+	
+	<bean id="engine" class="Engine">
+		...
+	</bean>
+	
+Spring Boot
+	- used for RAD
+	- develop Microservices / REST API
+
+	- Production Ready Apps
+	- Auto Configuration - minimizes configuration
+	- Embedded Servers
+	- Actuators
+	- Logging
+	- DevTools
+
+	- Starters
+	
+Spring Reactive Apps / Services
+
+	- Spring Webflux
+	- REST API
+		- Annotation Based
+		- Functional Style
+			- HandlerFunction		=> Handler Implementation
+			- RouterFunction		=> @RequestMapping
+			
+			GET /employees 
+		
+	- Employee Management Service
+		
+		- GET /employees		=> public Flux<Employee> getAllEmployees()
+		- GET /employee/{id}	=> public Mono<Employee> getEmployee(Integer empId)
+		- POST /employees		=> public void createEmployee(Employee employee)
+		- PUT /employees/{id}	=> public void updateEmployee(Employee employee, Integer empId)
+		- DELETE /employees/{id}=> public void deleteEmployee(Integer empId)
+		
+	- How to consume these services with reactive webclient
+		- Add Spring Reactive dependency -> spring-boot-webflux-starter
+		- Create webclient instance -> WebClient webclient = WebClient.create("http://localhost:8080")
+		- Fetch All Employees -> webclient.get().uri("/employees").retrieve()
+		- Fetch Specific Employee -> webclient.get().uri("/employees/{id}", req.getPathVariable("id")).retrieve()
+		- Create Employee	  -> webclient.post().uri("/employees").bodyValue(new Employee()).retrieve();
+
+Functional Style Reactive Service
+	- ServerRequest
+	- ServerResponse
+	
+	- HandlerFunction
+	- RouterFunction
+	
+	- RouterFunctions
+		- route(requestPredicate, handlingLogic)
+		- route(POST("/employees"), req -> empService.getAllEmployees())
+		
+	- RequestPredicate
+	- BodyExtractors
+	
+Spring Data Reactive - R2DBC
+	- STEP 1: Postgres installation and setup
+	- STEP 2: Create Reactive Employee Service with R2DBC
+	- STEP 3: Add R2DBC dependencies
+	- STEP 4: Create EmployeeRepository which extends ReactiveCrudRepository
+	- STEP 5: Update EmployeeService to make use of EmployeeRepository
+	- STEP 6: Update Employee model to have required annotations for persistence
+	- STEP 7: Configure datasource details in application.properties
+	- STEP 8: Create required Database instance, Schema and Tables in Postgres db
+
+NoSQL
+	- Not Only SQL
+	- Schemaless
+	- Unstructured Data
+	- No Normalization
+	- Distributed
+	- Highly Scalable
+	- Flexible
+	
+	- Key Value
+	- Document
+	- Columnar
+	- Graph Database
+	
+	
+	- MongoDB
+	- Cassandra
+	- DynamoDB
+	- Neo4j
+	- CouchDB
+	...
+	
+
+Spring Data Reactive - MongoDB
+	- STEP 1: MongoDB installation and setup
+	- STEP 2: Create Reactive Employee Service with Reactive MongoDB	
+	- STEP 3: Add Reactive Mongo dependencies
+	- STEP 4: Create EmployeeRepository which extends ReactiveCrudRepository
+	- STEP 5: Update EmployeeService to make use of EmployeeRepository
+	- STEP 6: Update Employee model to have required annotations for persistence
+	- STEP 7: Configure datasource details in application.properties	

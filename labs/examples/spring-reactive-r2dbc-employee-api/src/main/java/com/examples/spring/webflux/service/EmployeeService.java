@@ -9,6 +9,6 @@ public interface EmployeeService {
 	public Flux<Employee> getAllEmployees();
 	public Mono<Employee> getEmployee(Integer empId);
 	public Mono<Employee> createEmployee(Employee employee);
-	public void updateEmployee(Employee employee);
-	public void deleteEmployee(Integer empId);
+	public Mono<Boolean> updateEmployee(Employee employee);
+	public Mono<Boolean> deleteEmployee(Integer empId);
 }
