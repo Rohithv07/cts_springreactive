@@ -36,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Mono<Employee> createEmployee(Employee employee) {
-		employee.setId(employees.size() + 1);
+//		employee.setId(employees.size() + 1);
 		employees.put(employee.getId(), employee);
 		return Mono.just(employee);
 	}
@@ -49,6 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void deleteEmployee(Integer empId) {
 		employees.remove(empId);
+	}
+	
+	
+	public void deleteAll() {
+		employees.clear();
 	}
 
 }
