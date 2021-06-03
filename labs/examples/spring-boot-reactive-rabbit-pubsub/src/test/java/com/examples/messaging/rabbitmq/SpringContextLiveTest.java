@@ -1,10 +1,7 @@
 package com.examples.messaging.rabbitmq;
 
-import com.baeldung.spring.amqp.SpringWebfluxAmqpApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * This live test requires:
@@ -15,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * (e.g. `docker run -d --name rabbitmq -p 5672:5672 rabbitmq:3`)
  * 
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringWebfluxAmqpApplication.class)
 public class SpringContextLiveTest {
 
