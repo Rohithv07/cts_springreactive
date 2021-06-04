@@ -139,6 +139,7 @@ Reactive Manifesto
 	- Message Driven
 	
 Java Reactive Apps
+	- Java Flow
 	- JavaRx
 	- Project Reactor
 
@@ -283,4 +284,34 @@ Spring Data Reactive - MongoDB
 	- STEP 4: Create EmployeeRepository which extends ReactiveCrudRepository
 	- STEP 5: Update EmployeeService to make use of EmployeeRepository
 	- STEP 6: Update Employee model to have required annotations for persistence
-	- STEP 7: Configure datasource details in application.properties	
+	- STEP 7: Configure datasource details in application.properties
+
+Spring Reactive Messaging - RabbitMQ
+	- STEP 1: RabbitMQ installation and setup
+	- STEP 2: Create sample reactive service with AMQP (RabbitMQ)
+	- STEP 3: Add AMQP dependencies
+	- STEP 4: Initialize Exchange (Direct, Topic), Queue, Bindings
+	- STEP 5: Publish message to queue
+	- STEP 6: Subscribe message from queue
+	- STEP 7: Configure datasource and destination details in app config file
+	
+Spring Reactive Testing
+	- Unit Testing
+		- Junit
+		- Mockito
+		- SpringBootTest
+		- Reactor Test
+			- StepVerifier
+			- Test Publisher
+	
+	- Integration Testing
+		- WebTestClient
+
+Spring Reactive Security
+	
+	- Spring Security
+		- Principal -> User, Role and Permissisons
+		- 
+	- Basic
+	- OAuth2
+	- OAuth2 + JWT	
