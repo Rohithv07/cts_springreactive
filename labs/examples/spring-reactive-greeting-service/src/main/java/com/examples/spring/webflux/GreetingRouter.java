@@ -2,6 +2,7 @@ package com.examples.spring.webflux;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RequestPredicates;
@@ -13,6 +14,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class GreetingRouter {
 
   @Bean
+  @Lazy
   public RouterFunction<ServerResponse> greetingsRoute(GreetingHandler greetingHandler) {
 
     return RouterFunctions
@@ -27,7 +29,7 @@ public class GreetingRouter {
   }
   
   @Bean
-  public RouterFunction<ServerResponse> greetingsWithHandlerLogicRoute(GreetingHandler greetingHandler) {
+  public RouterFunction<ServerResponse> greetingsWithHandlerLogicRoute() {
 
     return RouterFunctions
     		.route(RequestPredicates.GET("/greetings1"), req -> ServerResponse.ok().body(BodyInserters.fromValue("Hello, Spring Reactive With BuiltIn Handler Logic!")));
