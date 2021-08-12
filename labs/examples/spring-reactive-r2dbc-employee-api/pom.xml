@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.examples.spring.webflux</groupId>
-	<artifactId>spring-reactive-rest-employee-api</artifactId>
+	<artifactId>spring-reactive-r2dbc-employee-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-reactive-r2dbc-employee-api</name>
 	<description>Demo project for Employee Mgmt with Spring Boot Webflux and R2DBC (Postgres)</description>
