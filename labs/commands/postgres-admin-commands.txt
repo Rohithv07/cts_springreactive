@@ -1,0 +1,28 @@
+#Connect via client
+%POSTGRESQL_HOME%\bin\psql 				(enter connection/login details to connect)
+
+#Connect to database
+psql -h localhost -p 5432 -U postgres testdb
+
+--Admin commands
+postgres-# \l				(List databases)
+postgres-# \c <dbname>		(Connect to database)
+postgres-# \d 				(List tables)
+postgres-# \d <tablename>	(Describe the table)
+
+show schemas;
+show tables;
+use <schemaname>;
+show columns from <tablename>;
+show indexes from <tablename>;
+
+#View user details
+select * from user;
+select host, user, select_priv, update_priv, delete_priv from user;
+
+#Create user
+CREATE USER 'training'@'localhost' IDENTIFIED BY 'training';
+GRANT ALL PRIVILEGES ON *.* TO 'training'@'localhost' WITH GRANT OPTION;  
+
+#Create database
+CREATE SCHEMA|DATABASE <DBNAME>;

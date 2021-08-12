@@ -1,0 +1,4 @@
+Enable Spring Boot Devtools in Intellij (to auto restart project upon any change)
+=======================================
+1) You need to enable the “Make project automatically” option. You can find it in Settings – Build, Execution, Deployment – Compiler
+2) To open the registry, Press Ctrl-Alt-Shift-/ and select "Registry" from the menu that appears, enable the “compiler.automake.allow.when.app.running” check-box.

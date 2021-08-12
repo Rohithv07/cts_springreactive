@@ -1,0 +1,5 @@
+STEP 1: Download Postgres for Windows - https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+STEP 2: Run postgresql-12.2-1-windows-x64.exe as Adminstrator (follow the wizard - provide superuser credentials [postgres\postgres])
+STEP 3: Open Command Prompt and Navigate to %POSTGRES_HOME%\bin e.g:> cd "C:\Program Files\PostgrSQL\12\bin"
+STEP 4: Run PostgreSQL shell client :> psql
+STEP 5: Provide the details (host, port, database, username, password) to connect to PostgreSQL server

@@ -1,0 +1,14 @@
+show dbs
+db
+use <dbname>
+show collections
+db.getCollection("employee").find()
+db.getCollection("employee").find().pretty()
+
+db.createCollection("inventory")
+db.inventory.drop()
+db.inventory.insertOne(
+	{ name: "kumar", country: "India"}
+)
+db.inventory.find( { name: "kumar" } )
+quit()
