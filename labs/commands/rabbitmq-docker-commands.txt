@@ -1,0 +1,14 @@
+docker logs rabbit-mq
+docker exec rabbit-mq rabbitmqctl status
+docker exec rabbit-mq rabbitmqctl list_exchanges
+docker exec rabbit-mq rabbitmqctl list_queues
+docker exec rabbit-mq rabbitmqctl list_bindings
+
+
+curl -v -H "Content-Type: text/plain" -d "Test message" http://localhost:8080/queue/NYSE
+
+curl -v http://localhost:8080/queue/NYSE
+
+curl -v -H "Content-Type: application/json" -d "{"temp":38,"location":"Salem"}" http://localhost:8080/topic/weather
+
+curl -v http://localhost:8080/topic/weather

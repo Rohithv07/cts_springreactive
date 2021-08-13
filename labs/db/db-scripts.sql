@@ -1,6 +1,6 @@
 CREATE DATABASE empsvc;
 
-USE empsvc;
+CREATE SCHEMA empsvc;
 
 CREATE TABLE empsvc.employee
 (
