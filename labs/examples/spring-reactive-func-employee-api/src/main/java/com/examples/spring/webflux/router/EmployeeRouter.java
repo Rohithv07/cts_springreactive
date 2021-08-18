@@ -8,6 +8,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -17,7 +18,7 @@ import com.examples.spring.webflux.model.Employee;
 import com.examples.spring.webflux.service.EmployeeService;
 
 
-@Component
+@Configuration
 public class EmployeeRouter {
 	
 	@Autowired
